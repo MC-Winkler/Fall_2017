@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour {
@@ -20,6 +21,8 @@ public class SceneController : MonoBehaviour {
 
 	private int score;
 	[SerializeField] private TextMesh scoreLabel;
+
+	Vector3 startPosition;
 
 	public void Restart(){
 		SceneManager.LoadScene ("Scene");
@@ -54,30 +57,52 @@ public class SceneController : MonoBehaviour {
 
 	}
 
-	private void CreateCardPair(int i, int j){
-		Card card;
-		if (i == 0 && j == 0) {
-			card = originalCard;
+	private void CreateCardPair(int i, int j, List<int[]> spacesStillFree, Card originalCard){
+		Debug.Log ("i, j  =" + i + ", " + j);
+
+
+		int[] firstCardPos = spacesStillFree [UnityEngine.Random.Range (0, spacesStillFree.Count)];
+		spacesStillFree.Remove (firstCardPos);
+		int[] secondCardPos = spacesStillFree [UnityEngine.Random.Range (0, spacesStillFree.Count)];
+		spacesStillFree.Remove (secondCardPos);
+
+		int idAndImage = UnityEngine.Random.Range (0, ids.Length);
+
+		if ((firstCardPos [0] == 0 && firstCardPos [1] == 0)) {
+			originalCard.SetCard(ids [idAndImage], images [idAndImage]);
 		} else {
-			card = Instantiate (originalCard) as Card;
+			Card card1 = Instantiate (originalCard) as Card;
+			card1.SetCard (ids [idAndImage], images [idAndImage]);
+			float card1X = (offsetX *firstCardPos[0]) + startPosition.x;
+			float card1Y = -(offsetY * firstCardPos[1]) + startPosition.y;
+			card1.transform.position = new Vector3 (card1X, card1Y, startPosition.z);
 		}
-		card.SetCard (ids [pairs [counter]], images [pairs [counter]]);
-		float posX = (offsetX * i) + startPosition.x;
-		float posY = -(offsetY * j) + startPosition.y;
-		card.transform.position = new Vector3 (posX, posY, startPosition.z);
-		counter++;
+
+		if ((secondCardPos [0] == 0 && secondCardPos [1] == 0)) {
+			originalCard.SetCard (ids [idAndImage], images [idAndImage]);
+		} else {
+			Card card2 = Instantiate (originalCard) as Card;
+			card2.SetCard (ids [idAndImage], images [idAndImage]);
+
+			float card2X = (offsetX * secondCardPos [0]) + startPosition.x;
+			float card2Y = -(offsetY * secondCardPos [1]) + startPosition.y;
+			card2.transform.position = new Vector3 (card2X, card2Y, startPosition.z);
+		}
 	}
 
 	// Use this for initialization
 	void Start () {
-		int[] pairs = { 0, 0, 1, 1, 2, 2, 3, 3 };
-		int counter = 0;
-		Vector3 startPosition = originalCard.transform.position;
+		startPosition = originalCard.transform.position;
+		List<int[]> spacesStillFree = new List<int[]> ();
 		for (int i = 0; i < gridcols; i++) {
 			for (int j = 0; j < gridrows; j++) {
-				if (currentBoardLayout[i,j] = false{
-					CreateCardPair(i,j);
-				}
+				int[] currentSlot = new int[] { i, j };
+				spacesStillFree.Add (currentSlot);
+			}
+		}
+		for (int i = 0; i < gridcols/2; i++) {
+			for (int j = 0; j < gridrows; j++) {
+				CreateCardPair(i,j, spacesStillFree, originalCard);
 			}
 		}
 	}
