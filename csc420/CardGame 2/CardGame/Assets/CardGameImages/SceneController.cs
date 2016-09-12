@@ -27,7 +27,9 @@ public class SceneController : MonoBehaviour {
 
 	private int tries = 0;
 	private int score = 0;
+	private int pairsFound = 0;
 	[SerializeField] private TextMesh scoreLabel;
+	[SerializeField] private static TextMesh highScores;
 
 	Vector3 startPosition;
 
@@ -84,24 +86,48 @@ public class SceneController : MonoBehaviour {
 		if (tries < 49) {
 			tries++;
 		}
-		Debug.Log ("tries = " + tries);
 		if (firstRevealed.Id == secondRevealed.Id) {
 			/** If you match a pair on your first turn, its value is multiplied by 50,
 			 * if you match one on your second turn by 49, third turn by 48, etc.
 			 * Also, I found the Int32.Parse method at msdn.microsoft.com 
 			 */
-			Debug.Log ("if 1");
 			int pointsEarned = Int32.Parse(firstRevealed.Id) * (50 - tries);
 			score += pointsEarned;
 			scoreLabel.text = "Score: " + score;
+			pairsFound += 1;
+			if (pairsFound == (gridcols * gridrows) / 2) {
+				FinishGame ();
+			}
+
 			firstRevealed = null;
 			secondRevealed = null;
 		} else {
-			Debug.Log ("if 2");
 			needToReset = true;
 		}
 
 	}
+
+	public void FinishGame() {
+
+		int j = 5;
+		//The second value passed to GetInt is the default value, looked it up in the Unity API
+		while (score >= PlayerPrefs.GetInt("MichaelWinklerHighScore" + j, 0) && j > 1){
+			PlayerPrefs.SetInt ("MichaelWinklerHighScore" + j, PlayerPrefs.GetInt ("MichaelWinklerHighScore" + (j - 1)));
+			j--;
+		}
+
+		PlayerPrefs.SetInt ("MichaelWinklerHighScore" + j, score);
+		Debug.Log ("highscores = " + highScores);
+		highScores.text += "\n";
+
+		for (int i = 1; i < 6; i++) {
+			highScores.text += i + ": " + PlayerPrefs.GetInt ("MichaelWinklerHighScore" + i) + "\n";
+		}
+
+		SceneManager.LoadScene ("HighScores");
+	}
+
+
 
 	private void CreateCardPair(int i, int j, List<int[]> spacesStillFree, List<int> idsNotYetUsed, Card originalCard){
 
