@@ -28,13 +28,20 @@ public class SceneController : MonoBehaviour {
 	private int tries = 0;
 	private int score = 0;
 	private int pairsFound = 0;
+
+	private static string highScoreText;
 	[SerializeField] private TextMesh scoreLabel;
-	[SerializeField] private static TextMesh highScores;
+	[SerializeField] private TextMesh highScores;
+
+	private static bool inMainScene = true;
+	private static bool inHighScores = false;
 
 	Vector3 startPosition;
 
 	public void EasyRestart(){
 		difficulty = EASY;
+		inHighScores = false;
+		inMainScene = true;
 		SceneManager.LoadScene ("Scene");
 	}
 
@@ -51,6 +58,7 @@ public class SceneController : MonoBehaviour {
 	public void HardRestart1(){
 		SceneManager.LoadScene ("RuleBook");
 	}
+
 	public void ShowRules() {
 		SceneManager.LoadScene ("RuleBook");
 	}
@@ -109,21 +117,24 @@ public class SceneController : MonoBehaviour {
 
 	public void FinishGame() {
 
-		int j = 5;
-		//The second value passed to GetInt is the default value, looked it up in the Unity API
-		while (score >= PlayerPrefs.GetInt("MichaelWinklerHighScore" + j, 0) && j > 1){
-			PlayerPrefs.SetInt ("MichaelWinklerHighScore" + j, PlayerPrefs.GetInt ("MichaelWinklerHighScore" + (j - 1)));
-			j--;
+		if (score>= PlayerPrefs.GetInt("MichaelWinklerHighScore5",0)){
+			int j = 5;
+			//The second value passed to GetInt is the default value, looked it up in the Unity API
+			while (score >= PlayerPrefs.GetInt("MichaelWinklerHighScore" + j, 0) && j > 1){
+				PlayerPrefs.SetInt ("MichaelWinklerHighScore" + j, PlayerPrefs.GetInt ("MichaelWinklerHighScore" + (j - 1)));
+				j--;
+			}
+
+			PlayerPrefs.SetInt ("MichaelWinklerHighScore" + j, score);
 		}
-
-		PlayerPrefs.SetInt ("MichaelWinklerHighScore" + j, score);
-		Debug.Log ("highscores = " + highScores);
-		highScores.text += "\n";
-
+			
+		highScoreText = "High Scores: \n";
 		for (int i = 1; i < 6; i++) {
-			highScores.text += i + ": " + PlayerPrefs.GetInt ("MichaelWinklerHighScore" + i) + "\n";
+			highScoreText += i + ": " + PlayerPrefs.GetInt ("MichaelWinklerHighScore" + i) + "\n";
 		}
 
+		inHighScores = true;
+		inMainScene = false;
 		SceneManager.LoadScene ("HighScores");
 	}
 
@@ -163,7 +174,19 @@ public class SceneController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		scoreLabel.text = "Score: " + score;
+
+
+		if (inHighScores) {
+			highScores.text = highScoreText;
+		} else {
+			highScores.text = "";
+		}
+
+		if (inMainScene) {
+			scoreLabel.text = "Score: " + score;
+		} else {
+			scoreLabel.text = "";
+		}
 
 		if (difficulty == EASY) {
 			gridrows = 2;
