@@ -7,11 +7,11 @@ public class Button : MonoBehaviour {
 	[SerializeField] private string message;
 
 	public void OnMouseDown() {
-		transform.localScale = new Vector3 (1.1f, 1.1f, 1.1f);
+		//transform.localScale = new Vector3 (1.1f, 1.1f, 1.1f);
 	}
 
 	public void OnMouseUp () {
-		transform.localScale = Vector3.one;
+		//transform.localScale = Vector3.one;
 		if (targetObject != null) {
 			targetObject.SendMessage (message);
 		}

@@ -3,7 +3,8 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CardGameImages\SceneController.cs">
     <Files>
       <File FileName="Assets\CardGameImages\Card.cs" Line="22" Column="2" />
-      <File FileName="Assets\CardGameImages\SceneController.cs" Line="19" Column="29" />
+      <File FileName="Assets\CardGameImages\SceneController.cs" Line="177" Column="3" />
+      <File FileName="Assets\CardGameImages\Button.cs" Line="14" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
