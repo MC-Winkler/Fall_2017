@@ -6,8 +6,10 @@ public class Basket : MonoBehaviour {
 	private int score = 0;
 	// Use this for initialization
 	void Start () {
-	
-	}
+        GameObject scoreObject = GameObject.Find("Score");
+        GUIText scoreGT = scoreObject.GetComponent<GUIText>();
+        scoreGT.text = "Score: " + score;
+    }
 	
 	// Update is called once per frame
 	void Update () {
