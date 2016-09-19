@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour {
     private float[] initialx = {6f, 3f, -3f, -6f};
     private float xVelocity;
     private float yVelocity = -12f;
+    [SerializeField] private Paddle thePaddle;
 
 	// Use this for initialization
 	void Start () {
@@ -45,11 +46,7 @@ public class Ball : MonoBehaviour {
         yVelocity = -yVelocity;
         if (collidedWith.tag == "Paddle")
         {
-            Debug.Log("hit paddle");
-            Paddle r = (Paddle) 
-            Vector3 paddleVelocity = r.velocity;
-            Debug.Log("The paddle's x velocity is " + paddleVelocity.x);
-            xVelocity += (float) 1000* paddleVelocity.x;
+            xVelocity += (float) thePaddle.xVelocityApproximation*10;
         }
     }
 

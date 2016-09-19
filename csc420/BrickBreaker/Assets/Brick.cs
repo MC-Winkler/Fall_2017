@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Brick : MonoBehaviour {
 
+    private static int score = 0;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -15,14 +17,11 @@ public class Brick : MonoBehaviour {
 
     void OnCollisionEnter(Collision coll)
     {
-        //GameObject collidedWith = coll.gameObject;
-        //if (collidedWith.tag == "Ball")
-        //{
-        //    Destroy(this);
-        //}
-        //score++;
-        //GameObject scoreObject = GameObject.Find("Score");
-        //GUIText scoreGT = scoreObject.GetComponent<GUIText>();
-        //scoreGT.text = "Score: " + score;
+        Debug.Log("collided");
+        Destroy(this.gameObject);
+        score++;
+        GameObject scoreObject = GameObject.Find("Score");
+        GUIText scoreGT = scoreObject.GetComponent<GUIText>();
+        scoreGT.text = "Score: " + score;
     }
 }
