@@ -68,6 +68,7 @@ public class CurrentConditionsDisplay extends JFrame implements Observer {
 			temperatureTextField.setText("" + weatherData.getTemperature());
 			humidityTextField.setText("" + weatherData.getHumidity());
 			pressureTextField.setText("" + weatherData.getPressure());
+			
 		}
 	}
 
