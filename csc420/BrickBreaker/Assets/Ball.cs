@@ -8,18 +8,24 @@ public class Ball : MonoBehaviour {
     private float[] initialx = {6f, 3f, -3f, -6f};
     private float xVelocity;
     private float yVelocity = -12f;
+    private int lives = 3;
+
     [SerializeField] private Paddle thePaddle;
+    [SerializeField] private SceneController sc;
 
 	// Use this for initialization
 	void Start () {
         //Randomize the initial x direction
         int index = Random.Range(0, 4);
         xVelocity = initialx[index];
+
+        //start the ball in the middle of the screen
+        Vector3 pos = Vector3.zero;
+        this.gameObject.transform.position = pos;
 	}
 	
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         Vector3 pos = transform.position;
         pos.x += xVelocity * Time.deltaTime;
         pos.y += yVelocity * Time.deltaTime;
@@ -30,12 +36,23 @@ public class Ball : MonoBehaviour {
         if (pos.x <= -HorizontalEdgeDistance) {
             xVelocity = Mathf.Abs(xVelocity);    
         }
-        if (pos.y <= -VerticalEdgeDistance)
-        {
-            yVelocity = Mathf.Abs(yVelocity);
+        if (pos.y <= -VerticalEdgeDistance) {
+            lives--;
+            GameObject livesObject = GameObject.Find("Lives");
+            GUIText livesGT = livesObject.GetComponent<GUIText>();
+            yVelocity = -12;
+            if (lives > 0) {
+                livesGT.text = "Lives: " + lives;
+                this.Start();
+            } else {
+                Destroy(this.gameObject);
+                livesGT.text = "";
+                GameObject gameOverNotification = GameObject.Find("GameOverNotification");
+                GUIText goGT = gameOverNotification.GetComponent<GUIText>();
+                goGT.text = "Game Over";
+            }
         }
-        if (pos.y >= VerticalEdgeDistance)
-        {
+        if (pos.y >= VerticalEdgeDistance) {
             yVelocity = -Mathf.Abs(yVelocity);
         }
     }
@@ -44,9 +61,16 @@ public class Ball : MonoBehaviour {
     {
         GameObject collidedWith = coll.gameObject;
         yVelocity = -yVelocity;
-        if (collidedWith.tag == "Paddle")
-        {
+        if (collidedWith.tag == "Paddle") {
             xVelocity += (float) thePaddle.xVelocityApproximation*10;
+        } else {
+            sc.BreakBrick();
+            //Difficulty - Every time you break a brick, the ball goes a little bit faster
+            if (yVelocity < 0) {
+                yVelocity -= 2;
+            } else {
+                yVelocity += 2;
+            }
         }
     }
 

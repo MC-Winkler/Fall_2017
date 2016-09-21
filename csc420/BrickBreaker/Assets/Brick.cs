@@ -17,7 +17,6 @@ public class Brick : MonoBehaviour {
 
     void OnCollisionEnter(Collision coll)
     {
-        Debug.Log("collided");
         Destroy(this.gameObject);
         score++;
         GameObject scoreObject = GameObject.Find("Score");
