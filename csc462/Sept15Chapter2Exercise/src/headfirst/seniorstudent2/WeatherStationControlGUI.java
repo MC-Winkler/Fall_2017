@@ -61,13 +61,10 @@ public class WeatherStationControlGUI extends JFrame {
     container.add(holdGrid, BorderLayout.CENTER);
     container.add(buttonPanel, BorderLayout.SOUTH);
 
-    updateButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
+    updateButton.addActionListener(event ->
         weatherData.setMeasurements(Float.parseFloat(temperatureTextField.getText()),
                                     Float.parseFloat(humidityTextField.getText()),
-                                    Float.parseFloat(pressureTextField.getText()));
-      }
-    });
+                                    Float.parseFloat(pressureTextField.getText()))
+      );
   }
 }
