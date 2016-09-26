@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Brick : MonoBehaviour {
 
-    private static int score = 0;
-
 	// Use this for initialization
 	void Start () {
 	
@@ -18,9 +16,10 @@ public class Brick : MonoBehaviour {
     void OnCollisionEnter(Collision coll)
     {
         Destroy(this.gameObject);
-        score++;
-        GameObject scoreObject = GameObject.Find("Score");
-        GUIText scoreGT = scoreObject.GetComponent<GUIText>();
-        scoreGT.text = "Score: " + score;
+        GameObject sceneController = GameObject.Find("SceneController");
+        //Looked this line up on the Unity forums
+        SceneController sc = (SceneController)sceneController.GetComponent(typeof(SceneController));
+        sc.BreakBrick(this);
     }
+
 }
