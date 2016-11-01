@@ -1,7 +1,7 @@
 import java.util.Iterator;
 import java.util.Stack;
 
-public class CompositeIterator implements Iterator {
+public class CompositeIterator implements Iterator<CarComponent> {
 
 	Stack<Iterator<CarComponent>> stack = new Stack<Iterator<CarComponent>>();
 	

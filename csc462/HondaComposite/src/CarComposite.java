@@ -17,9 +17,10 @@ public class CarComposite extends CarComponent{
 
 	public double getPrice() {
 		double totalPrice = 0;
-		Iterator<CarComponent> iterator = createIterator();
+		Iterator<CarComponent> iterator = new CompositeIterator (carComponents.iterator());
 		while(iterator.hasNext()){
-			totalPrice += iterator.next().getPrice();
+			CarComponent next = iterator.next();
+			totalPrice += next.getPrice();
 		}
 		return totalPrice;
 	}

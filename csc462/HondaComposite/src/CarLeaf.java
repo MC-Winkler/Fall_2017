@@ -19,8 +19,11 @@ public class CarLeaf extends CarComponent {
 
 	public void print() {
 		System.out.print(getName());
-		System.out.print("\t\t\t");
-		System.out.print("$" + getPrice());
+		if (price > 0){
+			int justifyAmount = 60 - name.length();
+			String formatString = "%" + justifyAmount + "s";
+			System.out.printf(formatString, "$" + getPrice());
+		}
 		System.out.println();
 	}
 

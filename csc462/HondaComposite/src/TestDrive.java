@@ -33,7 +33,7 @@ public class TestDrive {
 		interiorAccessories.add(handling);
 		
 		theCar.print();
-		System.out.println("Total MSRP as built " + theCar.getPrice());
+		System.out.printf("%60s", "Total MSRP as built $" + theCar.getPrice());
 	}
 	
 }

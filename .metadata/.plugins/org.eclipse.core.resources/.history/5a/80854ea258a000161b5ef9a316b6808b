@@ -1,0 +1,35 @@
+
+public class Turnstile {
+
+	private MachineState currentState;
+	
+	public enum MachineState {
+		LOCKED, UNLOCKED
+	};
+	
+	public Turnstile () {
+		this.currentState = MachineState.LOCKED;
+	}
+	
+	public String coin() {
+		if (currentState == MachineState.LOCKED){
+			System.out.println("unlocking");
+			currentState = MachineState.UNLOCKED;
+			return "unlocking";
+		} else {
+			System.out.println("triggering 'thank you' light");
+			return "triggering 'thank you' light";
+		}
+	}
+	
+	public String pass() {
+		if (currentState == MachineState.LOCKED){
+			System.out.println("triggering alarm");
+			return ("triggering alarm");
+		} else {
+			System.out.println("locking");
+			currentState = MachineState.LOCKED;
+			return "locking";
+		}
+	}
+}
