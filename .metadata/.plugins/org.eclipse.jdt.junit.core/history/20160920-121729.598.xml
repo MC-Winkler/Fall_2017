@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="WeatherDataTest" project="Sept15Chapter2Exercise" tests="3" started="3" failures="0" errors="0" ignored="0">
-  <testsuite name="headfirst.seniorstudent2.WeatherDataTest" time="0.619">
-    <testcase name="testAddObserver" classname="headfirst.seniorstudent2.WeatherDataTest" time="0.5"/>
-    <testcase name="testDeleteObserver" classname="headfirst.seniorstudent2.WeatherDataTest" time="0.049"/>
-    <testcase name="testSetMeasurements" classname="headfirst.seniorstudent2.WeatherDataTest" time="0.07"/>
-  </testsuite>
-</testrun>

@@ -1,0 +1,43 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class CarComposite extends CarComponent{
+
+	String name;
+	double price;
+	ArrayList<CarComponent> carComponents = new ArrayList<CarComponent>();
+	Iterator<CarComponent> iterator = null;
+	
+	public CarComposite(String name,
+			double price){
+		this.name = name;
+		this.price = price;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public double getPrice() {
+		double totalPrice = price;
+		Iterator<CarComponent> iterator = createIterator();
+		while(iterator.hasNext()){
+			totalPrice += iterator.next().getPrice();
+		}
+		return totalPrice;
+	}
+	
+	public Iterator<CarComponent> createIterator() {
+		if (iterator == null){
+			iterator = new CompositeIterator(carComponents.iterator());
+		}
+		return iterator;
+	}
+	
+	public void print() {
+		System.out.println(name);
+		while(iterator.hasNext()){
+			iterator.next().print();
+		}
+	}
+}
