@@ -1,3 +1,4 @@
+import java.util.Iterator;
 
 public abstract class CarComponent {
 
@@ -22,6 +23,10 @@ public abstract class CarComponent {
 	}
 	
 	public double getPrice() {
+		throw new UnsupportedOperationException();
+	}
+	
+	public Iterator<CarComponent> createIterator() {
 		throw new UnsupportedOperationException();
 	}
 	
