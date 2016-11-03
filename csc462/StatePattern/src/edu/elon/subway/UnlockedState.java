@@ -16,7 +16,11 @@ public class UnlockedState implements State {
 	@Override
 	public String pass() {
 		turnstile.setState(turnstile.getLockedState());
-		return "triggering alarm";
+		return "letting patron through";
+	}
+	
+	public String toString() {
+		return "UNLOCKED";
 	}
 
 }

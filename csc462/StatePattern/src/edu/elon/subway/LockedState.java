@@ -18,5 +18,9 @@ public class LockedState implements State {
 	public String pass() {
 		return "triggering alarm";
 	}
+	
+	public String toString() {
+		return "LOCKED";
+	}
 
 }

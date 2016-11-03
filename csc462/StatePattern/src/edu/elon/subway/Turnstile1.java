@@ -12,13 +12,17 @@ class Turnstile1 {
 		this.state = MachineState.LOCKED;
 	}
 	
+	public MachineState getState () {
+		return this.state;
+	}
+	
 	public String coin() {
 		if (state == MachineState.LOCKED){
 			System.out.println("unlocking");
 			state = MachineState.UNLOCKED;
 			return "unlocking";
 		} else {
-			System.out.print("triggering thank you light");
+			System.out.println("triggering thank you light");
 			return "triggering thank you light";
 		}
 	}
