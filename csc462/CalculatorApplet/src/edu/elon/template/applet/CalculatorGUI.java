@@ -1,14 +1,15 @@
 package edu.elon.template.applet;
 
+import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 
 import javax.swing.BoxLayout;
-import javax.swing.JApplet;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -195,10 +196,8 @@ public class CalculatorGUI extends JFrame {
 		});
 		buttonPanel.add(add);
 
-		frame.setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
-
-		frame.add(inputField);
-		frame.add(buttonPanel);
+		frame.add(inputField, BorderLayout.NORTH);
+		frame.add(buttonPanel, BorderLayout.CENTER);
 
 		frame.setVisible(true);
 	}
