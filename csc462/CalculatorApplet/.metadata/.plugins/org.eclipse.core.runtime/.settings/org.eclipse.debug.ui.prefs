@@ -1,0 +1,3 @@
+Console.highWaterMark=80008000
+Console.lowWaterMark=80000000
+eclipse.preferences.version=1
