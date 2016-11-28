@@ -1,0 +1,16 @@
+package edu.elon.template.applet;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+public interface Calculator extends Remote{
+	
+	public double add() throws RemoteException;
+	
+	public double subtract() throws RemoteException;
+	
+	public double multiply() throws RemoteException;
+	
+	public double divide() throws RemoteException;
+
+}

@@ -1,0 +1,79 @@
+package edu.elon.math;
+
+import java.lang.reflect.Method;
+import java.util.Observer;
+
+public class ModelImplementation implements ModelInterface {
+
+	private double operandOne;
+	private double operandTwo;
+	private String currentValue;
+	private String operation;
+	
+	@Override
+	public void setOperandOneCurrent() {
+		operandOne = Double.parseDouble(currentValue);
+	}
+	
+	public void setOperandTwoCurrent() {
+		operandTwo = Double.parseDouble(currentValue);
+	}
+	
+	@Override
+	public void numberPressed(String input) {
+		currentValue += input;
+		notifyObservers();
+	}
+
+	@Override
+	public void divide() {
+		currentValue = Double.toString(operandOne / operandTwo);
+		notifyObservers();
+	}
+
+	@Override
+	public void multiply() {
+		currentValue = Double.toString(operandOne * operandTwo);
+		notifyObservers();
+	}
+
+	@Override
+	public void subtract() {
+		currentValue = Double.toString(operandOne - operandTwo);
+		notifyObservers();
+	}
+
+	@Override
+	public void add() {
+		currentValue = Double.toString(operandOne + operandTwo);
+		notifyObservers();
+	}
+
+	@Override
+	public void solve() {
+		Method operationToCompute = this.getClass().getMethod(operation);
+		operationToCompute.invoke(this, null);
+		notifyObservers();
+	}
+
+	@Override
+	public void decimalPoint() {
+		if (!currentValue.contains(".")){
+			currentValue += ".";
+			notifyObservers();
+		}
+	}
+
+	@Override
+	public void registerObserver(Observer o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeObserver(Observer o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;edu.elon.math.CalculatorGUI&apos; to &apos;CalculatorView&apos;&#x0D;&#x0A;- Original project: &apos;MVCDemo&apos;&#x0D;&#x0A;- Original element: &apos;edu.elon.math.CalculatorGUI&apos;&#x0D;&#x0A;- Renamed element: &apos;edu.elon.math.CalculatorView&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;CalculatorGUI&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;edu.elon.math{CalculatorGUI.java[CalculatorGUI" matchStrategy="1" name="CalculatorView" qualified="false" references="true" similarDeclarations="false" stamp="1480186577619" textual="false" version="1.0"/>
+</session>

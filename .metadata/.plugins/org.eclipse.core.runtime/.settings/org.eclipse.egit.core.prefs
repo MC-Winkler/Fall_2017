@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 GitRepositoriesView.GitDirectories=C\:\\Users\\Michael\\Desktop\\Fall_2017\\.git;C\:\\Users\\Michael\\Desktop\\csc462rmi\\.git;/Users/mwinkler3/Desktop/Fall_2017/.git\:;
 GitRepositoriesView.GitDirectories.relative=.git\:
 eclipse.preferences.version=1
+=======
+GitRepositoriesView.GitDirectories=/Users/mwinkler3/Desktop/csc462rmi/.git\:/Users/mwinkler3/Desktop/Fall_2017/.git\:
+GitRepositoriesView.GitDirectories.relative=/Users/mwinkler3/Desktop/csc462rmi/.git\:.git\:
+eclipse.preferences.version=1
+>>>>>>> 41185f3229ae26507c1624ffc2cfe5a16ca60be3

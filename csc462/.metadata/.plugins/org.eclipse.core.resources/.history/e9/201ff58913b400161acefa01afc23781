@@ -1,0 +1,26 @@
+package edu.elon.math;
+
+import java.util.Observer;
+
+public interface ModelInterface {
+	
+	void numberPressed (String input);
+	
+	void divide();
+	
+	void multiply();
+	
+	void subtract();
+	
+	void add();
+	
+	void solve();
+	
+	void decimalPoint();
+	
+	void setOperandOneCurrent();
+	
+	void registerObserver(Observer o);
+	
+	void removeObserver (Observer o);
+}

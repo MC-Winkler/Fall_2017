@@ -1,0 +1,13 @@
+package edu.elon.math;
+
+public class CalculatorDriver {
+
+	public static void main (String[] args) {
+		
+		ModelInterface model = new ModelImplementation();
+		ControllerInterface controller = new ControllerImplementation(model);
+		CalculatorView calculator = new CalculatorView(model, controller);
+		
+	}
+	
+}

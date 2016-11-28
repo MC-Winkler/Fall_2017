@@ -1,0 +1,56 @@
+package edu.elon.math;
+
+public class ControllerImplementation implements ControllerInterface {
+	
+	ModelInterface model;
+	CalculatorView view;
+	
+	public ControllerImplementation (ModelInterface model) {
+		this.model = model;
+		view = new CalculatorView(model, this);
+	}
+
+	@Override
+	public void numberPressed(String input) {
+		model.numberPressed(input);
+	}
+
+	@Override
+	public void dividePressed(String input) {
+		model.setOperandOne(input);
+		model.setOperation("divide");
+		model.clearCurrentValue();
+	}
+
+	@Override
+	public void multiplyPressed(String input) {
+		model.setOperandOne(input);
+		model.setOperation("multiply");
+		model.clearCurrentValue();
+	}
+
+	@Override
+	public void subtractPressed(String input) {
+		model.setOperandOne(input);
+		model.setOperation("subtract");
+		model.clearCurrentValue();
+	}
+
+	@Override
+	public void addPressed(String input) {
+		model.setOperandOne(input);
+		model.setOperation("add");
+		model.clearCurrentValue();
+	}
+
+	@Override
+	public void decimalPointPressed() {
+		model.decimalPoint();
+	}
+
+	@Override
+	public void solvePressed(String input) {
+		model.setOperandTwo(input);
+	}
+
+}

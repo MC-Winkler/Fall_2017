@@ -1,0 +1,19 @@
+package edu.elon.math;
+
+public interface ControllerInterface {
+	
+	void numberPressed(String input);
+
+	void dividePressed(String input);
+	
+	void multiplyPressed(String input);
+	
+	void subtractPressed(String input);
+	
+	void addPressed(String input);
+	
+	void solvePressed(String input);
+	
+	void decimalPointPressed();
+	
+}
